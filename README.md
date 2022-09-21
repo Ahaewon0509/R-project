@@ -3,7 +3,9 @@
 ## `[9월 21일]`
 ### 1. Rstudio 작업 디렉토리 설정
 	1. 방법
-	 - Tools -> Global Options -> General에 있는 Default working directory(when not in a project에 "C:/R_project" 경로 변경하면 됨
+	 - Tools -> Global Options -> 
+	 General에 있는 Default working directory(when not in a project에 
+	 "C:/R_project" 경로 변경하면 됨
 	
 
 
