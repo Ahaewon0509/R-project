@@ -22,10 +22,9 @@
                             "&numOfRows=", 100,           # 한번에 가져올 최대 자료 수
                             "&serviceKey=", service_key)  # 인증키
   } 
-  Sys.sleep(0.1)   # 0.1초간 멈춤
-  msg <- paste0("[", i,"/",nrow(loc), "]  ", loc[i,3], " 의 크롤링 목록이 생성됨 => 총 [", cnt,"] 건") # 알림 메시지
-  cat(msg, "\n\n")
-}
+        Sys.sleep(0.1)   # 0.1초간 멈춤
+	msg <- paste0("[", i,"/",nrow(loc), "]  ", loc[i,3], " 의 크롤링 목록이 생성됨 => 총 [", cnt,"] 건") # 알림 메시지             cat(msg, "\n\n")
+} 
 
 
 
