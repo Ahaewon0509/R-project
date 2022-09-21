@@ -6,9 +6,25 @@
 	 - Tools -> Global Options -> 
 	 General에 있는 Default working directory(when not in a project에 
 	 "C:/R_project" 경로 변경하면 됨
-	
-
-
+	 
+### 2. 요청목록 생성
+	1. 요청목록 만들기
+	 - url_list <- list()
+	 cnt <-0
+	2. 요청목록 채우기
+	 - for(i in 1:nrow(loc)){           # 외부반복: 25개 자치구
+	 for(j in 1:length(datelist)){  # 내부반복: 12개월
+	 cnt <- cnt + 1               # 반복누적 카운팅
+    #---# 요청 목록 채우기 (25 X 12= 300)
+    url_list[cnt] <- paste0("http://openapi.molit.go.kr:8081/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTrade?", #한컴자료 call back URL
+                            "LAWD_CD=", loc[i,1],         # 지역코드
+                            "&DEAL_YMD=", datelist[j],    # 수집월
+                            "&numOfRows=", 100,           # 한번에 가져올 최대 자료 수
+                            "&serviceKey=", service_key)  # 인증키
+  } 
+  Sys.sleep(0.1)   # 0.1초간 멈춤
+  msg <- paste0("[", i,"/",nrow(loc), "]  ", loc[i,3], " 의 크롤링 목록이 생성됨 => 총 [", cnt,"] 건") # 알림 메시지
+  cat(msg, "\n\n")
 
 
 
