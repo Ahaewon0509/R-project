@@ -4,7 +4,7 @@
 ### 1. 자료 요청하고 응답받기
 	1. 요청 URL
 	- url_list를 xmlTreeParse()로 보내고, 응답 결과인 XML을 raw_data[[i]]에 저장
-	-
+	- xmlRoot()로 XML의 루트 노드만 추출하여 임시 저장소인 root_Node[[i]]에 저장
 
 
 
