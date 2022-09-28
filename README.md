@@ -5,7 +5,13 @@
 	1. 요청 URL
 	- url_list를 xmlTreeParse()로 보내고, 응답 결과인 XML을 raw_data[[i]]에 저장
 	- xmlRoot()로 XML의 루트 노드만 추출하여 임시 저장소인 root_Node[[i]]에 저장
-
+	
+### 2. 전체 거래 건수 확인
+	1. 거래 건수 확인
+	items <- root_Node[[i]][[2]][['items']]
+	size <- xmlSize(items)
+	- 전체 거래 내역은 root_Node[[i]][[2]][['items']] 코드로 추출함
+	- xmlSize() 함수로 전체 거래 건수가 몇 개인지도 알아냄
 
 
 
