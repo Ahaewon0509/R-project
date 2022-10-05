@@ -19,7 +19,6 @@
 	-> NA로 된 데이터는 계산할 수 없으므로 제거, 대체해야 함
 	-> 먼저 NA값이 있는지 확인 -> is.na()함수를 사용하는데, table() 함수를 함께 사용하면 NA가 몇개가 포함되어 있는지 알 수 있음
 	
-	
 	table(in.na(apt_price)) #결측값 확인
 	
 	apt_price <- na.omit(apt_price) #결측값 제거
