@@ -13,6 +13,17 @@
 	 
 	load("./03_integrated/03_apt_price.rdata") #실거래 자료 불러오기
 	head(apt_price, 2) #자료확인
+	
+	2. 결측값과 공백 제거하기
+	- NA제거 코드
+	-> NA로 된 데이터는 계산할 수 없으므로 제거, 대체해야 함
+	-> 먼저 NA값이 있는지 확인 -> is.na()함수를 사용하는데, table() 함수를 함께 사용하면 NA가 몇개 포함되어
+	
+	table(in.na(apt_price)) #결측값 확인
+	
+	apt_price <- na.omit(apt_price) #결측값 제거
+	table(is.na(apt_price)) #결측값 확인
+
 
 
 
