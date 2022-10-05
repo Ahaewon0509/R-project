@@ -9,10 +9,10 @@
          1. 수집한 데이터 불러오기
 	 - pre_process.R 파일 생성
 	 setwd(dirname(rstudioapi::getSourceEditorContext()$path))
-options(warn=-1)
-
-load("./03_integrated/03_apt_price.rdata") #실거래 자료 불러오기
-head(apt_price, 2) #자료확인
+	 options(warn=-1)
+	 
+	 load("./03_integrated/03_apt_price.rdata") #실거래 자료 불러오기
+	 head(apt_price, 2) #자료확인
 
 
 
