@@ -5,14 +5,14 @@
 	1. 03_integrated 새로운 폴더 생성
 	- 03_integrated -> 새로운 폴더를 생성하고, save(), write.csv()로 데이터를 RDATA와 CSV 형식으로 저장
 	
-	
-### 2. 전체 거래 건수 확인
-	1. 거래 건수 확인
-	items <- root_Node[[i]][[2]][['items']]
-	size <- xmlSize(items)
-	- 전체 거래 내역은 root_Node[[i]][[2]][['items']] 코드로 추출함
-	- xmlSize() 함수로 전체 거래 건수가 몇 개인지도 알아냄
+### 2. 불필요한 정보 지우기
+         1. 수집한 데이터 불러오기
+	 - pre_process.R 파일 생성
+	 setwd(dirname(rstudioapi::getSourceEditorContext()$path))
+options(warn=-1)
 
+load("./03_integrated/03_apt_price.rdata") #실거래 자료 불러오기
+head(apt_price, 2) #자료확인
 
 
 
