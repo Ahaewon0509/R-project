@@ -6,7 +6,7 @@
 	- 03_integrated -> 새로운 폴더를 생성하고, save(), write.csv()로 데이터를 RDATA와 CSV 형식으로 저장
 	
 ### 2. 불필요한 정보 지우기
-        1. 수집한 데이터 불러오기
+        1. 03_integrated 새로운 폴더 생성
 	- pre_process.R 파일 생성
 	setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 	options(warn=-1)
