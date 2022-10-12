@@ -1,14 +1,14 @@
 # 602277111 안혜원
 
 ## `[10월 12일]`
-### 1. 지오코딩 준비하기
+### 1. 지오 코딩 준비하기
 	1.카카오 로컬 API 키 발급받기
 	- developers.kakao.com 사이트 접속 -> 카카오계정으로 로그인 -> [내 애플리케이션] 메뉴 클릭 -> 
 	[애플리케이션 추가하기]: 앱 이름, 이름+사업자명 입력 후 저장 - > 
 	"카카오맵이 제공하는 REST API 키" 발급확인
 	
 ### 2. 새로운 파일, 폴더 생성
-        1. 05_geocoding 새로운 폴더 코드로 생성
+        1. 05_geocoding 새로운 폴더 코드 작성
 	- juso_geocoding <- rbindlist(add_list)   # 리스트를 데이터프레임 변환
 	juso_geocoding$coord_x <- as.numeric(juso_geocoding$coord_x) # 좌표값 숫자형 변환
 	juso_geocoding$coord_y <- as.numeric(juso_geocoding$coord_y)
@@ -17,16 +17,11 @@
 	save(juso_geocoding, file="./05_geocoding/05_juso_geocoding.rdata") # 저장
 	write.csv(juso_geocoding, "./05_geocoding/05_juso_geocoding.csv")
 
+	2. 지오 코딩 준비하기: kakao_key에는 인증받은 REST API 키 입력
+	- add_list <- list()   # 빈 리스트 생성
+	cnt <- 0             # 반복문 카운팅 초기값 설정
+	kakao_key = "5ca06cab87edc59da94313938eb4975f"       # 인증키
 	
-	2. 결측값과 공백 제거하기
-	- NA제거 코드
-	-> NA로 된 데이터는 계산할 수 없으므로 제거, 대체해야 함
-	-> 먼저 NA값이 있는지 확인 -> is.na()함수를 사용하는데, table() 함수를 함께 사용하면 NA가 몇개가 포함되어 있는지 알 수 있음
-	
-	table(in.na(apt_price)) #결측값 확인
-	
-	apt_price <- na.omit(apt_price) #결측값 제거
-	table(is.na(apt_price)) #결측값 확인
 
 
 ## `[10월 05일]`
