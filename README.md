@@ -7,14 +7,16 @@
 	[애플리케이션 추가하기]: 앱 이름, 이름+사업자명 입력 후 저장 - > 
 	"카카오맵이 제공하는 REST API 키" 발급확인
 	
-### 2. 불필요한 정보 지우기
-        1. 수집한 데이터 불러오기
-	- pre_process.R 파일 생성
-	setwd(dirname(rstudioapi::getSourceEditorContext()$path))
-	options(warn=-1)
-	 
-	load("./03_integrated/03_apt_price.rdata") #실거래 자료 불러오기
-	head(apt_price, 2) #자료확인
+### 2. 새로운 파일, 폴더 생성
+        1. 05_geocoding 새로운 폴더 코드로 생성
+	- juso_geocoding <- rbindlist(add_list)   # 리스트를 데이터프레임 변환
+	juso_geocoding$coord_x <- as.numeric(juso_geocoding$coord_x) # 좌표값 숫자형 변환
+	juso_geocoding$coord_y <- as.numeric(juso_geocoding$coord_y)
+	juso_geocoding <- na.omit(juso_geocoding)   # 결측치 제거
+	dir.create("./05_geocoding")   # 새로운 폴더 생성
+	save(juso_geocoding, file="./05_geocoding/05_juso_geocoding.rdata") # 저장
+	write.csv(juso_geocoding, "./05_geocoding/05_juso_geocoding.csv")
+
 	
 	2. 결측값과 공백 제거하기
 	- NA제거 코드
