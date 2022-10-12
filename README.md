@@ -8,7 +8,7 @@
 	"카카오맵이 제공하는 REST API 키" 발급확인
 	
 ### 2. 새로운 파일, 폴더 생성
-       1. 05_geocoding 새로운 폴더 코드 작성
+        1. 05_geocoding 새로운 폴더 코드 작성
 	- juso_geocoding <- rbindlist(add_list)   # 리스트를 데이터프레임 변환
 	juso_geocoding$coord_x <- as.numeric(juso_geocoding$coord_x) # 좌표값 숫자형 변환
 	juso_geocoding$coord_y <- as.numeric(juso_geocoding$coord_y)
