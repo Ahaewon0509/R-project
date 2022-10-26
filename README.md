@@ -1,11 +1,12 @@
 # 602277111 안혜원
 
 ## `[10월 26일]`
-### 1. 
-	1.카카오 로컬 API 키 발급받기
-	- developers.kakao.com 사이트 접속 -> 카카오계정으로 로그인 -> [내 애플리케이션] 메뉴 클릭
-	-> [애플리케이션 추가하기]: 앱 이름, 이름+사업자명 입력 후 저장 - > "카카오맵이 제공하
-	REST API 키" 발급확인
+### 1. 주소와 좌표 결합하기
+	1. 데이터 불러오기
+	- 06_geodataframe 새로운 폴더 코드 작성 -> geo_dataframe.R 새로운 파일 생성
+	- setwd(dirname(rstudioapi::getSourceEditorContext()$path))
+	load("./04_preprocess/04_preprocess.rdata")    # 주소 불러오기
+	load("./05_geocoding/05_juso_geocoding.rdata") # 좌표 불러오기
 
 
 ## `[10월 12일]`
