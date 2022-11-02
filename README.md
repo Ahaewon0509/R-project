@@ -4,11 +4,9 @@
 ### 1. 지역별 평균 가격 구하기
 	1. 실거래 + 그리드 데이터 결합
 	- load() 함수로 실거래 자료(포인트 데이터)를 불러오고, st_read()로 서울시 그리드 파일을 읽어온 다음 st_join()으로
-		
-	- setwd(dirname(rstudioapi::getSourceEditorContext()$path))
-	load("./04_preprocess/04_preprocess.rdata")    # 주소 불러오기
-	load("./05_geocoding/05_juso_geocoding.rdata") # 좌표 불러오기
-
+	특성이 서로 다른 두 데이터를 결합
+	- 압선 결합 결과로 실거래 자료에는 좌표에 해당하는 그리드 ID(apt_price$ID)가 추가되며, aggregate() 함수로 그리드
+	내에 거래된 평당 거래가(apt_peice$py)를 취합하여 평균가격(ked_high)을 구한다.
 
 
 ## `[10월 26일]`
