@@ -8,6 +8,29 @@
 	- 압선 결합 결과로 실거래 자료에는 좌표에 해당하는 그리드 ID(apt_price$ID)가 추가되며, 
 	aggregate() 함수로 그리드 내에 거래된 평당 거래가(apt_peice$py)를 취합하여 
 	평균가격(ked_high)을 구한다.
+	
+### 2. 평균가격 정보 표시하기
+	1. 그리드 + 평균 가격 결합
+	- kde_high <- merge(grid, kde_high,  by="ID")   # ID 기준으로 결합
+	library(ggplot2) # install.packages("ggplot2")
+	library(dplyr)   # install.packages("dplyr")
+	kde_high %>% ggplot(aes(fill = avg_price)) + # 그래프 시각화
+	geom_sf() + 
+	scale_fill_gradient(low = "white", high = "red")
+	
+### 3. 지도 경계 그리기
+	1. sp형으로 변환과 그리드별 중심 좌표 추출
+	- library(sp) # install.packages("sp")
+	kde_high_sp <- as(st_geometry(kde_high), "Spatial")    # sf형 => sp형 변환
+	x <- coordinates(kde_high_sp)[,1]  # 그리드 x, y 좌표 추출
+	y <- coordinates(kde_high_sp)[,2]
+	
+	2. 기준 경계 설정
+	- l1 <- bbox(kde_high_sp)[1,1] - (bbox(kde_high_sp)[1,1]*0.0001) 
+	# 그리드 기준 경계지점 설정
+	l2 <- bbox(kde_high_sp)[1,2] + (bbox(kde_high_sp)[1,2]*0.0001)
+	l3 <- bbox(kde_high_sp)[2,1] - (bbox(kde_high_sp)[2,1]*0.0001)
+	l4 <- bbox(kde_high_sp)[2,2] + (bbox(kde_high_sp)[1,1]*0.0001)
 
 
 ## `[10월 26일]`
