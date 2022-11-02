@@ -1,5 +1,16 @@
 # 602277111 안혜원
 
+## `[11월 02일]`
+### 1. 지역별 평균 가격 구하기
+	1. 실거래 + 그리드 데이터 결합
+	- load() 함수로 실거래 자료(포인트 데이터)를 불러오고, st_read()로 서울시 그리드 파일을 읽어온 다음 st_join()으로
+	
+	- setwd(dirname(rstudioapi::getSourceEditorContext()$path))
+	load("./04_preprocess/04_preprocess.rdata")    # 주소 불러오기
+	load("./05_geocoding/05_juso_geocoding.rdata") # 좌표 불러오기
+
+
+
 ## `[10월 26일]`
 ### 1. 주소와 좌표 결합하기
 	1. 데이터 불러오기
