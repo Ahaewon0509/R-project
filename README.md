@@ -6,6 +6,7 @@
 	- rgdal 패키지를 설치하고 불러오기 -> leaflet()으로 지도 라이브러리 사용을 선언하고,
 	addProviderTiles() 옵션으로 지도의 기본 테마를 정함
 	- 또한 addPolygon()은 서울시 외곽선을 불러오고, 외곽선의 폭과 색상을 조정할 수 있다.
+	
 	- 코드: library(rgdal)    # install.packages("rgdal")
 	library(leaflet)  # install.packages("leaflet")
 	leaflet() %>% 
@@ -22,6 +23,7 @@
 	- 두 시점 사이의 가격 변화를 알려면 가장 먼저 시간 범위를 설정해야 합니다.
 	- load()로 아파트 실거래 자료를 불러오고, st_read()로 서울시 그리드 파일을 읽어온다.
 	- st_join()으로 실거래와 그리드를 공간 결합한 후 head()로 결과를 확인하면 됩니다.
+	
 	- 코드: #---# [1단계: 데이터 준비]
 	setwd(dirname(rstudioapi::getSourceEditorContext()$path)) # 작업폴더 설정
 	load("./06_geodataframe/06_apt_price.rdata")     # 실거래 불러오기
@@ -50,6 +52,7 @@
 	
 ### 3. 지도 경계 그리기
 	1. sp형으로 변환과 그리드별 중심 좌표 추출
+	
 	- 코드: library(sp) # install.packages("sp")
 	kde_high_sp <- as(st_geometry(kde_high), "Spatial")    # sf형 => sp형 변환
 	x <- coordinates(kde_high_sp)[,1]  # 그리드 x, y 좌표 추출
@@ -67,6 +70,7 @@
 ### 1. 주소와 좌표 결합하기
 	1. 데이터 불러오기
 	- 06_geodataframe 새로운 폴더 코드 작성 -> geo_dataframe.R 새로운 파일 생성
+	
 	- 코드: setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 	load("./04_preprocess/04_preprocess.rdata")    # 주소 불러오기
 	load("./05_geocoding/05_juso_geocoding.rdata") # 좌표 불러오기
@@ -78,6 +82,7 @@
 	
 ### 3. 지오 데이터프레임 만들기
 	1. 지오 데이터프레임 생성하기
+	
 	- 코드: library(sp)    # install.packages('sp')
 	coordinates(apt_price) <- ~coord_x + coord_y    # 좌표값 할당
 	proj4string(apt_price) <- "+proj=longlat +datum=WGS84 +no_defs" # 좌표계(CRS) 정의
@@ -85,6 +90,7 @@
 	apt_price <- st_as_sf(apt_price)     # sp형 => sf형 변환
 	
 	2. 데이터프레임 시각화
+	
 	- 코드: plot(apt_price$geometry, axes = T, pch = 1)        # 플롯 그리기 
 	library(leaflet)   # install.packages('leaflet')   # 지도 그리기
 	leaflet() %>% 
@@ -100,6 +106,7 @@
 	
 ### 2. 새로운 파일, 폴더 생성
         1. 05_geocoding 새로운 폴더 코드 작성
+	
 	- 코드: juso_geocoding <- rbindlist(add_list)   # 리스트를 데이터프레임 변환
 	juso_geocoding$coord_x <- as.numeric(juso_geocoding$coord_x) # 좌표값 숫자형 변환
 	juso_geocoding$coord_y <- as.numeric(juso_geocoding$coord_y)
@@ -124,6 +131,7 @@
 	
 ### 2. 불필요한 정보 지우기
         1. 수집한 데이터 불러오기
+	
 	- 코드: pre_process.R 파일 생성
 	setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 	options(warn=-1)
@@ -143,7 +151,6 @@
 
 
 
-
 ## `[9월 28일]`
 ### 1. 자료 요청하고 응답받기
 	1. 요청 URL
@@ -159,8 +166,6 @@
 
 
 
-
-
 ## `[9월 21일]`
 ### 1. Rstudio 작업 디렉토리 설정
 	1. 방법
@@ -173,6 +178,7 @@
 	 - url_list <- list()
 	 cnt <-0
 	2. 요청목록 채우기
+	
 	 - 코드: for(i in 1:nrow(loc)){           # 외부반복: 25개 자치구
 	 for(j in 1:length(datelist)){  # 내부반복: 12개월
 	 cnt <- cnt + 1               # 반복누적 카운팅
