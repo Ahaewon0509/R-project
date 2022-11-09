@@ -30,6 +30,43 @@
 	grid <- st_read("./01_code/sigun_grid/seoul.shp")  # 서울시 1km 그리드 불러오기
 	apt_price <-st_join(apt_price, grid, join = st_intersects)  # 실거래 + 그리드 공간결합
 	head(apt_price, 2)
+	
+	2. 이전/이후 데이터 세트 만들기
+	- 두 시점을 비교하려면 전체 데이터를 시기에 따라 이전과 이후로 구분해야 한다.
+	- kde_before는 기준일인 2021년 7월 1일보다 이전 데이터만 추출하고, 
+	kde_after는 반대로 2021년 7월 1일 이루 데이터만 추출한다.
+	- 그리드별 평균 가격을 기준일 전후로 구했다면 이제 두 시점 사이의 변화율을 계산하여 kde_diff$diff에
+	입력하고 -> 이때 사용한 계산식은 "(이전 평균-이후 평균) / 이전 평균) X 100"이다.
+	
+	- 코드: #---# [2단계: 이전/이후 데이터 세트 만들기]
+	
+	kde_before <- subset(apt_price, ymd < "2021-07-01")  # 이전 데이터 필터링
+	kde_before <- aggregate(kde_before$py, by=list(kde_before$ID),mean)  # 평균가격
+	colnames(kde_before) <- c("ID", "before")   # 컬럼명 변경
+	
+	kde_after  <- subset(apt_price, ymd > "2021-07-01")  # 이후 데이터 필터링
+	kde_after <- aggregate(kde_after$py, by=list(kde_after$ID),mean) # 평균가격 
+	colnames(kde_after) <- c("ID", "after")  # 컬럼명 변경
+	
+	kde_diff <- merge(kde_before, kde_after, by="ID")    # 이전 + 이후 데이터 결합
+	kde_diff$diff <- round((((kde_diff$after-kde_diff$before)/
+                           kde_diff$before)* 100), 0) # 변화율 계산
+			   
+	3. 가격이 오른 지역 찾기
+	- [kde_diff$diff > 0,] 코드는 과거보다 가격이 오른 지역만 골라낸다.
+	- 정보를 지도에 표현하려면 merge() 함수로 그리드 파일과 결합하고, ggplot()으로 결합 결과를 확인
+	
+	- 코드: #---# [3단계: 가격이 오른 지역 찾기]
+	
+	library(sf)        # install.packages("sf")
+	kde_diff <- kde_diff[kde_diff$diff > 0,]    # 상승지역만 추출
+	kde_hot <- merge(grid, kde_diff,  by="ID")  # 그리드에 상승지역 결합
+	library(ggplot2)   # install.packages("ggplot2")
+	library(dplyr)     # install.packages("dplyr")
+	kde_hot %>%        # 그래프 시각화
+	ggplot(aes(fill = diff)) + 
+	geom_sf() + 
+	scale_fill_gradient(low = "white", high = "red")
     
 
 ## `[11월 02일]`
