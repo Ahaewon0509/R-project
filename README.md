@@ -3,15 +3,32 @@
 ## `[11월 09일]`
 ### 1. 지도 그리기
 	1. 지도 위에 래스터 이미지 올리기
-	- load() 함수로 실거래 자료(포인트 데이터)를 불러오고, st_read()로 서울시 그리드 파일을 읽어온 다음 
-	st_join()으로 특성이 서로 다른 두 데이터를 결합
-	- 압선 결합 결과로 실거래 자료에는 좌표에 해당하는 그리드 ID(apt_price$ID)가 추가되며, 
-	aggregate() 함수로 그리드 내에 거래된 평당 거래가(apt_peice$py)를 취합하여 
-	평균가격(ked_high)을 구한다.
-
-
-
-
+	- rgdal 패키지를 설치하고 불러오기 -> leaflet()으로 지도 라이브러리 사용을 선언하고,
+	addProviderTiles() 옵션으로 지도의 기본 테마를 정함
+	- 또한 addPolygon()은 서울시 외곽선을 불러오고, 외곽선의 폭과 색상을 조정할 수 있다.
+	- 코드: library(rgdal)    # install.packages("rgdal")
+	library(leaflet)  # install.packages("leaflet")
+	leaflet() %>% 
+	#---# 베이스맵 불러오기
+	addProviderTiles(providers$CartoDB.Positron) %>% 
+	#---# 서울시 경계선 불러오기
+	addPolygons(data = bnd, weight = 3, color= "red", fill = NA) %>% 
+	#---# 레스터 이미지 불러오기addRasterImage(raster_high, 
+                 colors = colorNumeric(c("blue", "green","yellow","red"), 
+                 values(raster_high), na.color = "transparent"), opacity = 0.4)
+	
+### 2. 요즘 뜨는 지역은 어디일까?
+	1. 데이터 준비하기
+	- 두 시점 사이의 가격 변화를 알려면 가장 먼저 시간 범위를 설정해야 합니다.
+	- load()로 아파트 실거래 자료를 불러오고, st_read()로 서울시 그리드 파일을 읽어온다.
+	- st_join()으로 실거래와 그리드를 공간 결합한 후 head()로 결과를 확인하면 됩니다.
+	- 코드: #---# [1단계: 데이터 준비]
+	setwd(dirname(rstudioapi::getSourceEditorContext()$path)) # 작업폴더 설정
+	load("./06_geodataframe/06_apt_price.rdata")     # 실거래 불러오기
+	grid <- st_read("./01_code/sigun_grid/seoul.shp")  # 서울시 1km 그리드 불러오기
+	apt_price <-st_join(apt_price, grid, join = st_intersects)  # 실거래 + 그리드 공간결합
+	head(apt_price, 2)
+    
 
 ## `[11월 02일]`
 ### 1. 지역별 평균 가격 구하기
@@ -24,7 +41,7 @@
 	
 ### 2. 평균가격 정보 표시하기
 	1. 그리드 + 평균 가격 결합
-	- kde_high <- merge(grid, kde_high,  by="ID")   # ID 기준으로 결합
+	- 코드: kde_high <- merge(grid, kde_high,  by="ID")   # ID 기준으로 결합
 	library(ggplot2) # install.packages("ggplot2")
 	library(dplyr)   # install.packages("dplyr")
 	kde_high %>% ggplot(aes(fill = avg_price)) + # 그래프 시각화
@@ -33,7 +50,7 @@
 	
 ### 3. 지도 경계 그리기
 	1. sp형으로 변환과 그리드별 중심 좌표 추출
-	- library(sp) # install.packages("sp")
+	- 코드: library(sp) # install.packages("sp")
 	kde_high_sp <- as(st_geometry(kde_high), "Spatial")    # sf형 => sp형 변환
 	x <- coordinates(kde_high_sp)[,1]  # 그리드 x, y 좌표 추출
 	y <- coordinates(kde_high_sp)[,2]
@@ -50,7 +67,7 @@
 ### 1. 주소와 좌표 결합하기
 	1. 데이터 불러오기
 	- 06_geodataframe 새로운 폴더 코드 작성 -> geo_dataframe.R 새로운 파일 생성
-	- setwd(dirname(rstudioapi::getSourceEditorContext()$path))
+	- 코드: setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 	load("./04_preprocess/04_preprocess.rdata")    # 주소 불러오기
 	load("./05_geocoding/05_juso_geocoding.rdata") # 좌표 불러오기
 
@@ -61,14 +78,14 @@
 	
 ### 3. 지오 데이터프레임 만들기
 	1. 지오 데이터프레임 생성하기
-	- library(sp)    # install.packages('sp')
+	- 코드: library(sp)    # install.packages('sp')
 	coordinates(apt_price) <- ~coord_x + coord_y    # 좌표값 할당
 	proj4string(apt_price) <- "+proj=longlat +datum=WGS84 +no_defs" # 좌표계(CRS) 정의
 	library(sf)    # install.packages('sf')
 	apt_price <- st_as_sf(apt_price)     # sp형 => sf형 변환
 	
 	2. 데이터프레임 시각화
-	- plot(apt_price$geometry, axes = T, pch = 1)        # 플롯 그리기 
+	- 코드: plot(apt_price$geometry, axes = T, pch = 1)        # 플롯 그리기 
 	library(leaflet)   # install.packages('leaflet')   # 지도 그리기
 	leaflet() %>% 
 	addTiles() %>% 
@@ -83,7 +100,7 @@
 	
 ### 2. 새로운 파일, 폴더 생성
         1. 05_geocoding 새로운 폴더 코드 작성
-	- juso_geocoding <- rbindlist(add_list)   # 리스트를 데이터프레임 변환
+	- 코드: juso_geocoding <- rbindlist(add_list)   # 리스트를 데이터프레임 변환
 	juso_geocoding$coord_x <- as.numeric(juso_geocoding$coord_x) # 좌표값 숫자형 변환
 	juso_geocoding$coord_y <- as.numeric(juso_geocoding$coord_y)
 	juso_geocoding <- na.omit(juso_geocoding)   # 결측치 제거
@@ -92,7 +109,7 @@
 	write.csv(juso_geocoding, "./05_geocoding/05_juso_geocoding.csv")
 
 	2. 지오 코딩 준비하기: kakao_key에는 인증받은 REST API 키 입력
-	- add_list <- list()   # 빈 리스트 생성
+	- 코드: add_list <- list()   # 빈 리스트 생성
 	cnt <- 0             # 반복문 카운팅 초기값 설정
 	kakao_key = "5ca06cab87edc59da94313938eb4975f"       # 인증키
 
@@ -107,7 +124,7 @@
 	
 ### 2. 불필요한 정보 지우기
         1. 수집한 데이터 불러오기
-	- pre_process.R 파일 생성
+	- 코드: pre_process.R 파일 생성
 	setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 	options(warn=-1)
 	 
@@ -119,7 +136,7 @@
 	-> NA로 된 데이터는 계산할 수 없으므로 제거, 대체해야 함
 	-> 먼저 NA값이 있는지 확인 -> is.na()함수를 사용하는데, table() 함수를 함께 사용하면 NA가 몇개가 포함되어 있는지 알 수 있음
 	
-	table(in.na(apt_price)) #결측값 확인
+	코드: table(in.na(apt_price)) #결측값 확인
 	
 	apt_price <- na.omit(apt_price) #결측값 제거
 	table(is.na(apt_price)) #결측값 확인
@@ -156,7 +173,7 @@
 	 - url_list <- list()
 	 cnt <-0
 	2. 요청목록 채우기
-	 - for(i in 1:nrow(loc)){           # 외부반복: 25개 자치구
+	 - 코드: for(i in 1:nrow(loc)){           # 외부반복: 25개 자치구
 	 for(j in 1:length(datelist)){  # 내부반복: 12개월
 	 cnt <- cnt + 1               # 반복누적 카운팅
     #---# 요청 목록 채우기 (25 X 12= 300)
