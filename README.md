@@ -12,6 +12,30 @@
 	*코드를 실행시키면, "사용자 인터페이스" 라는 팝업페이지가 뜬다.*
 <img width="50%" src="https://user-images.githubusercontent.com/54701008/202170608-34823093-fb57-4494-919d-1a41df2e2087.PNG"/>
 
+### 2. 사용자 인터페이스 부분
+	1. 샤이니가 제공하는 첫 번째 "01_hello" 실행
+	- 사용자가 보는 화면을 만들려면, fluidPage()로 단일 페이지 화면을 만들 수 있다.
+	- 화면을 사이드바와 메인 패녈로 나누기 위해 sidebarLayout()을 이용해, sidebarPanel()과 mainPanel()을 정의한다.
+	- 사이드바 패널에 있는 sliderInput()은 일정 범위의 데이터를 입력하여 input$bins에 저장 후 다음 서버로 전달된다.
+	- 메인 패널의 plotOutput()은 서버에서 계산된 결과인 otput$distPlot을 받아서 차트로 출력한다.
+	
+	- 코드: #---# [3단계: 01_hello 샘플의 사용자 인터페이스 부분]
+	
+	library(shiny)       # 라이브러리 등록
+	ui <- fluidPage(     # 사용자 인터페이스 시작: fluidPage 정의
+	titlePanel("샤이니 1번 샘플"),  # 타이틀 입력
+	#---# 레이아웃 구성: 사이드바 패널 + 메인패널 
+	sidebarLayout(
+	sidebarPanel(  # 사이드바 패널 시작
+	#--- 입력값: input$bins 저장
+	sliderInput(inputId = "bins",         # 입력 아이디  
+                  label = "막대(bin)갯수:",  # 텍스트 라벨  
+                  min = 1, max = 50,        # 선택 범위(1-50)
+                  value = 30)),             # 기본 선택 값 30
+		  mainPanel(   # 메인패널 시작
+      #---# 출력값: output$distPlot 저장
+      plotOutput(outputId = "distPlot"))  # 차트 출력
+  ))
 
 ## `[11월 09일]`
 
