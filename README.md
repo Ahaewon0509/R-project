@@ -42,8 +42,9 @@
 	- server()는 ui()의 input$bins 데이터를 받아서 분석한 다음 output$distPlot로 전달하는 역할
 	- 입력 데이터인 input$bins은 renderPlot() 안에서 분석되어 최종적으로 output$distPlot에 저장된다.
 	- 위에 나와있는 것처럼 plotOutput()을 실핼하면 팝업 창에 샤이니 애프리케이션이 실행된다.
-<img width="70%" src="https://user-images.githubusercontent.com/54701008/202175810-f253d836-e24a-48a3-9e2a-e72b1dbd49aa"/>
+<img width="70%" src="https://user-images.githubusercontent.com/54701008/202176090-56940691-6d42-4ed3-9e67-716bf0c9f79e.PNG"/>
 
+![01_hello](https://user-images.githubusercontent.com/54701008/202176090-56940691-6d42-4ed3-9e67-716bf0c9f79e.PNG)
 
 ## `[11월 09일]`
 
