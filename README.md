@@ -42,6 +42,23 @@
 	- server()는 ui()의 input$bins 데이터를 받아서 분석한 다음 output$distPlot로 전달하는 역할
 	- 입력 데이터인 input$bins은 renderPlot() 안에서 분석되어 최종적으로 output$distPlot에 저장된다.
 	- 위에 나와있는 것처럼 plotOutput()을 실핼하면 팝업 창에 샤이니 애프리케이션이 실행된다.
+	
+	- 코드: server <- function(input, output, session){
+	#---# 랜더링한 플롯을 output 인자의 distPlot에 저장
+	output$distPlot <- renderPlot({
+	x <- faithful$waiting # 분출대기시간 정보 저장
+	#---# input$bins을 플롯으로 랜더링
+	bins <- seq(min(x), max(x), length.out = input$bins + 1)
+	#---# 히스토그램 그리기 (맥 사용자 폰트 추가 필요)
+	hist(x, breaks = bins, col = "#75AADB", border = "white",
+         xlab = "다음 분출때까지 대기시간(분)",  
+         main = "대기시간 히스토그램")
+	 })
+	 }
+	 #---# 실행
+	 shinyApp(ui, server)
+	 rm(list = ls())  # 메모리 정리하기
+	 
 <img width="70%" src="https://user-images.githubusercontent.com/54701008/202176090-56940691-6d42-4ed3-9e67-716bf0c9f79e.PNG"/>
 
 ## `[11월 09일]`
