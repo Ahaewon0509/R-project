@@ -35,7 +35,7 @@
 		  mainPanel(   # 메인패널 시작
       #---# 출력값: output$distPlot 저장
       plotOutput(outputId = "distPlot"))  # 차트 출력
-  ))
+      ))
   
 ### 3. 서버 부분
 	1. 서버 부분 작성
