@@ -10,7 +10,7 @@
 	server <- function(input, output, session){}  # 구성 2: server
 	shinyApp(ui, server)  # 구성 3: 실행
 	*코드를 실행시키면, "사용자 인터페이스" 라는 팝업페이지가 뜬다.*
-	![page](https://user-images.githubusercontent.com/54701008/202170608-34823093-fb57-4494-919d-1a41df2e2087.PNG)
+	<img width="80%" src="https://user-images.githubusercontent.com/54701008/202170608-34823093-fb57-4494-919d-1a41df2e2087.PNG"/>
 
 ## `[11월 09일]`
 ### 1. 지도 그리기
