@@ -10,7 +10,7 @@
 	server <- function(input, output, session){}  # 구성 2: server
 	shinyApp(ui, server)  # 구성 3: 실행
 	*코드를 실행시키면, "사용자 인터페이스" 라는 팝업페이지가 뜬다.*
-<img width="50%" src="https://user-images.githubusercontent.com/54701008/202170608-34823093-fb57-4494-919d-1a41df2e2087.PNG"/>
+<img width="70%" src="https://user-images.githubusercontent.com/54701008/202170608-34823093-fb57-4494-919d-1a41df2e2087.PNG"/>
 
 ### 2. 사용자 인터페이스 부분
 	1. 샤이니가 제공하는 첫 번째 "01_hello" 실행
@@ -36,6 +36,14 @@
       #---# 출력값: output$distPlot 저장
       plotOutput(outputId = "distPlot"))  # 차트 출력
   ))
+  
+### 3. 서버 부분
+	1. 서버 부분 작성
+	- server()는 ui()의 input$bins 데이터를 받아서 분석한 다음 output$distPlot로 전달하는 역할
+	- 입력 데이터인 input$bins은 renderPlot() 안에서 분석되어 최종적으로 output$distPlot에 저장된다.
+	- 위에 나와있는 것처럼 plotOutput()을 실핼하면 팝업 창에 샤이니 애프리케이션이 실행된다.
+<img width="70%" src="https://user-images.githubusercontent.com/54701008/202175810-f253d836-e24a-48a3-9e2a-e72b1dbd49aa"/>
+
 
 ## `[11월 09일]`
 
