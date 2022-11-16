@@ -10,9 +10,9 @@
 	server <- function(input, output, session){}  # 구성 2: server
 	shinyApp(ui, server)  # 구성 3: 실행
 	*코드를 실행시키면, "사용자 인터페이스" 라는 팝업페이지가 뜬다.*
-	<img width="80%" src="https://user-images.githubusercontent.com/54701008/202170608-34823093-fb57-4494-919d-1a41df2e2087.PNG"/>
-	![Simpson Local](images/page.png)
-	<img src="[https://i.pinimg.com/originals/20/78/a9/2078a921387fb535735b19820175bacf.jpg](https://user-images.githubusercontent.com/54701008/202171293-e0ef7262-2d12-4a8d-b4af-387f4ae693be.png)" width="500">
+<img width="80%" src="https://user-images.githubusercontent.com/54701008/202170608-34823093-fb57-4494-919d-1a41df2e2087.PNG"/>
+![Simpson Local](images/page.png)
+<img src="[https://i.pinimg.com/originals/20/78/a9/2078a921387fb535735b19820175bacf.jpg](https://user-images.githubusercontent.com/54701008/202171293-e0ef7262-2d12-4a8d-b4af-387f4ae693be.png)" width="500">
 ![Alt text](/R-project/page.png)
 
 ## `[11월 09일]`
