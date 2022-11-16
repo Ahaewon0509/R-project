@@ -44,8 +44,6 @@
 	- 위에 나와있는 것처럼 plotOutput()을 실핼하면 팝업 창에 샤이니 애프리케이션이 실행된다.
 <img width="70%" src="https://user-images.githubusercontent.com/54701008/202176090-56940691-6d42-4ed3-9e67-716bf0c9f79e.PNG"/>
 
-![01_hello](https://user-images.githubusercontent.com/54701008/202176090-56940691-6d42-4ed3-9e67-716bf0c9f79e.PNG)
-
 ## `[11월 09일]`
 
 ### 1. 지도 그리기
