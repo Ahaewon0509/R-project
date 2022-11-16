@@ -1,11 +1,16 @@
 # 602277111 안혜원
 
 ## `[11월 16일]`
-### 1. 지도 그리기
-	1. 지도 위에 래스터 이미지 올리기
-	- rgdal 패키지를 설치하고 불러오기 -> leaflet()으로 지도 라이브러리 사용을 선언하고,
-	addProviderTiles() 옵션으로 지도의 기본 테마를 정함
-	- 또한 addPolygon()은 서울시 외곽선을 불러오고, 외곽선의 폭과 색상을 조정할 수 있다.
+### 1. 샤이니 입문하기
+	1. 샤이니 기본 구조 이해 
+	- shiny_test.R 새로운 파일 생성 -> install.packages("shiny")
+	
+	- 코드: library(shiny)  # install.packages("shiny")  
+	ui <- fluidPage("사용자 인터페이스")  # 구성 1: ui
+	server <- function(input, output, session){}  # 구성 2: server
+	shinyApp(ui, server)  # 구성 3: 실행
+	*코드를 실행시키면, "사용자 인터페이스" 라는 팝업페이지가 뜬다.*
+	<img src="C:/R-project/page.PNG">
 
 
 
