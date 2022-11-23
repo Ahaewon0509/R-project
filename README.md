@@ -26,6 +26,29 @@
 
 <img width="55%" src="https://user-images.githubusercontent.com/54701008/203531984-90e28c44-98ed-4c4b-a6b4-4688034e8d5b.PNG"/>
 
+### 2. 레이아웃 정의하기
+	1. 단일 페이지 레이아웃
+	- 그리드형 배치를 사용하고자 fluidRow()를 추가한다.
+	- column()을 이용하여 화면의 배치를 설정할 수 있으며, 최대 폭은 12이다.
+	- 코드: # 9-4 화면설정과 레이아웃
+	#---# [1단계: 단일 페이지 화면]
+	
+	library(shiny)
+	#---# 전체 페이지 정의
+	ui <- fluidPage(  
+	#---# 행 row 구성 정의
+	fluidRow(    
+	#---# 첫번째 열: 붉은색(red) 박스로 높이 450 픽셀, 폭 9
+	column(9, div(style = "height:450px;border: 4px solid red;","폭 9")),
+	#---# 두번째 열: 보라색(purple) 박스로 높이 450 픽셀, 폭 3
+	column(3, div(style = "height:450px;border: 4px solid purple;","폭 3")),
+	#---# 세번째 열: 파란색(blue) 박스로 높이 400 픽셀, 폭 12
+	column(12, div(style = "height:400px;border: 4px solid blue;","폭 12"))))
+	server <- function(input, output, session) {}
+	shinyApp(ui, server)
+<img width="50%" src="https://user-images.githubusercontent.com/54701008/203533531-1a2381d7-8ece-47d1-b080-cc33ad233f75.PNG"/>
+
+
 ## `[11월 16일]`
 ### 1. 샤이니 입문하기
 	1. 샤이니 기본 구조 이해 
