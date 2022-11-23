@@ -46,7 +46,8 @@
 	column(12, div(style = "height:400px;border: 4px solid blue;","폭 12"))))
 	server <- function(input, output, session) {}
 	shinyApp(ui, server)
-<img width="50%" src="https://user-images.githubusercontent.com/54701008/203533531-1a2381d7-8ece-47d1-b080-cc33ad233f75.PNG"/>
+
+<img width="50%" src="https://user-images.githubusercontent.com/54701008/203534103-2288dadd-9e74-4d30-af1e-1206c70b113d.PNG"/>
 
 
 ## `[11월 16일]`
