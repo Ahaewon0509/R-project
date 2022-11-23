@@ -24,7 +24,7 @@
 	
 	shinyApp(ui, server)
 
-<img width="50%" src="https://user-images.githubusercontent.com/54701008/203533699-3d37d025-9cd6-46d7-a389-25679e821033.PNG"/>
+<img width="50%" src="https://user-images.githubusercontent.com/54701008/203534103-2288dadd-9e74-4d30-af1e-1206c70b113d.PNG"/>
 
 ### 2. 레이아웃 정의하기
 	1. 단일 페이지 레이아웃
@@ -47,8 +47,7 @@
 	server <- function(input, output, session) {}
 	shinyApp(ui, server)
 
-<img width="50%" src="https://user-images.githubusercontent.com/54701008/203534103-2288dadd-9e74-4d30-af1e-1206c70b113d.PNG"/>
-
+<img width="50%" src="https://user-images.githubusercontent.com/54701008/203533699-3d37d025-9cd6-46d7-a389-25679e821033.PNG"/>
 
 ## `[11월 16일]`
 ### 1. 샤이니 입문하기
