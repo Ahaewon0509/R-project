@@ -1,5 +1,31 @@
 # 602277111 안혜원
 
+## `[11월 23일]`
+### 1. 반응형 웹 애플리케이션 만들기
+	1. 반응식 작성하기
+	- 사용자 입력에 까라서 반응(결과를 필터링)하도록 reactuve() 반응식을 시작한다.
+	- subset()으로 시내 연비(cty)가 input$range[1]보다 크고 input$range[2]보다 작은 행을 추출한 다음
+	return()으로 sty_sel이라는 반응식 결과를 저장한다.
+	- 이 내용을 데이터 데이블로 출력하고자 renderDataTable()로 전달하여, output$table에 저장한다.
+	
+	- 코드: #---# [2단계: 반응식 작성]
+	library(shiny) 
+	ui <- fluidPage(
+	sliderInput("range", "연비", min = 0, max = 35, value = c(0, 10)), # 입력
+	DT::dataTableOutput("table"))   # 출력
+	server <- function(input, output, session){
+	
+	#---# 반응식
+	cty_sel = reactive({  
+	cty_sel = subset(mpg, cty >= input$range[1] & cty <= input$range[2])
+	return(cty_sel)})   
+	#---# 반응결과 렌더링
+	output$table <- DT::renderDataTable(cty_sel()) }
+	
+	shinyApp(ui, server)
+
+<img width="70%" src="https://user-images.githubusercontent.com/54701008/203531984-90e28c44-98ed-4c4b-a6b4-4688034e8d5b.PNG"/>
+
 ## `[11월 16일]`
 ### 1. 샤이니 입문하기
 	1. 샤이니 기본 구조 이해 
