@@ -24,7 +24,7 @@
 	
 	shinyApp(ui, server)
 
-<img width="55%" src="https://user-images.githubusercontent.com/54701008/203533699-3d37d025-9cd6-46d7-a389-25679e821033.PNG"/>
+<img width="50%" src="https://user-images.githubusercontent.com/54701008/203533699-3d37d025-9cd6-46d7-a389-25679e821033.PNG"/>
 
 ### 2. 레이아웃 정의하기
 	1. 단일 페이지 레이아웃
