@@ -24,7 +24,7 @@
 	
 	shinyApp(ui, server)
 
-<img width="70%" src="https://user-images.githubusercontent.com/54701008/203531984-90e28c44-98ed-4c4b-a6b4-4688034e8d5b.PNG"/>
+<img width="55%" src="https://user-images.githubusercontent.com/54701008/203531984-90e28c44-98ed-4c4b-a6b4-4688034e8d5b.PNG"/>
 
 ## `[11월 16일]`
 ### 1. 샤이니 입문하기
@@ -36,7 +36,7 @@
 	server <- function(input, output, session){}  # 구성 2: server
 	shinyApp(ui, server)  # 구성 3: 실행
 	*코드를 실행시키면, "사용자 인터페이스" 라는 팝업페이지가 뜬다.*
-<img width="70%" src="https://user-images.githubusercontent.com/54701008/202170608-34823093-fb57-4494-919d-1a41df2e2087.PNG"/>
+<img width="55%" src="https://user-images.githubusercontent.com/54701008/202170608-34823093-fb57-4494-919d-1a41df2e2087.PNG"/>
 
 ### 2. 사용자 인터페이스 부분
 	1. 샤이니가 제공하는 첫 번째 "01_hello" 실행
@@ -85,7 +85,7 @@
 	 shinyApp(ui, server)
 	 rm(list = ls())  # 메모리 정리하기
 	 
-<img width="70%" src="https://user-images.githubusercontent.com/54701008/202176090-56940691-6d42-4ed3-9e67-716bf0c9f79e.PNG"/>
+<img width="55%" src="https://user-images.githubusercontent.com/54701008/202176090-56940691-6d42-4ed3-9e67-716bf0c9f79e.PNG"/>
 
 ## `[11월 09일]`
 
